@@ -21,8 +21,14 @@ class Waiter
   end
   
   def best_tipper
-    meals.map do |meal|
-      
+    prev_tip = 0
+    customer = nil
+    meals.each do |meal|
+      if prev_tip < meal.tip
+        prev_tip = meal.tip
+        customer = meal.customer
+      end
     end
+    customer
   end
 end
